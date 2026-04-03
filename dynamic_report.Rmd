@@ -1,0 +1,79 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+library(tidyverse)
+
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTPkMrSw1lZWYlizNVWxtyjwJTJq47H6w0EU5NlcyrUqySC4ZvtPZzUhVUZ-Gwkb6zNtE-bNvC9mfzK/pub?output=csv")
+
+latest_data <- logged_data %>%
+  rename(
+    timestamp = Timestamp,
+    category = `What category was the video?`,
+    length_seconds = `What was the length of the video (seconds)`,
+    finished_seconds = `How Much of the Short did u finish (in seconds)`,
+    engagement = `Rate the video engagement out of 10`,
+    likes = `How many likes does the short have?`
+  )
+
+summary_values <- latest_data %>%
+  summarise(
+    mean_length = mean(length_seconds),
+    mean_engagement = mean(engagement)
+  )
+
+```
+
+```{css}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  color: #222222;
+}
+
+h2 {
+  color: #6a0dad;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+```
+
+## What's going on with this data?
+
+## YouTube Shorts Viewing Habits
+
+This dynamic report shows patterns in the YouTube Shorts I logged using a Google Form. It focuses on the categories of shorts I watched and their engagement ratings.
+
+The average length of the shorts in this dataset was **`r round(summary_values$mean_length, 2)` seconds**.
+
+The average engagement rating of the shorts was **`r round(summary_values$mean_engagement, 2)` out of 10**.
+
+```{r}
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(y = category), fill = "#6a0dad") +
+  labs(
+    title = "Number of YouTube Shorts by Category",
+    subtitle = "Count of the shorts I logged in each category",
+    x = "Number of shorts",
+    y = "Category",
+    caption = "Source: Google Form data"
+  )
+
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = engagement, fill = category)) +
+  labs(
+    title = "Engagement Scores of YouTube Shorts",
+    subtitle = "Distribution of ratings out of 10",
+    x = "Engagement score",
+    y = "Number of shorts",
+    caption = "Source: Google Form data"
+  )
