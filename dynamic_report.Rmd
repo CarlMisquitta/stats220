@@ -31,29 +31,54 @@ summary_values <- latest_data %>%
 ```{css}
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-  color: #222222;
+  background-color: #fff8f8;
+  color: #2b2b2b;
+  padding: 24px;
 }
 
 h2 {
-  color: #6a0dad;
+  color: #b30000;
+  font-size: 30px;
+  margin-bottom: 16px;
+  border-bottom: 4px solid #d94b4b;
+  padding-bottom: 10px;
 }
 
 p {
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 14px;
+}
+
+strong {
+  color: #b30000;
+}
+
+a {
+  color: #c62828;
+}
+
+a:hover {
+  color: #e53935;
+}
+
+img {
+  border-radius: 8px;
 }
 ```
 
-## What's going on with this data?
-
 ## YouTube Shorts Viewing Habits
 
-This dynamic report shows patterns in the YouTube Shorts I logged using a Google Form. It focuses on the categories of shorts I watched and their engagement ratings.
+<div class="main-container">
+
+This dynamic report shows patterns in the YouTube Shorts I logged using a Google Form. It focuses on the categories of shorts I watched and their engagement ratings. I wanted to showcase the main values when it comes to shorts that being how short and engaging they are, therefore
 
 The average length of the shorts in this dataset was **`r round(summary_values$mean_length, 2)` seconds**.
 
 The average engagement rating of the shorts was **`r round(summary_values$mean_engagement, 2)` out of 10**.
+
+</div>
 
 ```{r}
 latest_data %>%
