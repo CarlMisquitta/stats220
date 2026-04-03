@@ -70,7 +70,6 @@ img {
 
 ## YouTube Shorts Viewing Habits
 
-<div class="main-container">
 
 This dynamic report shows patterns in the YouTube Shorts I logged using a Google Form. It focuses on the categories of shorts I watched and their engagement ratings. I wanted to showcase the main values when it comes to shorts that being how short and engaging they are, therefore
 
@@ -78,7 +77,6 @@ The average length of the shorts in this dataset was **`r round(summary_values$m
 
 The average engagement rating of the shorts was **`r round(summary_values$mean_engagement, 2)` out of 10**.
 
-</div>
 
 ```{r}
 latest_data %>%
